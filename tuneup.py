@@ -10,7 +10,8 @@ https://docs.python.org/3/library/timeit.html,
 https://youtu.be/FsAPt_9Bf3U,
 https://youtu.be/KlBPCzcQNU8,
 https://docs.python.org/3/library/profile.html,
-Manuel Velasco
+Manuel Velasco,
+Daniel Lomelino
 """
 
 import cProfile
@@ -76,15 +77,6 @@ def find_duplicate_movies(src):
 def optimized_find_duplicate_movies(src):
     """Returns a list of duplicate movies from a src list."""
     # Optimized
-    # movies = read_movies(src)
-    # movie_dict = {}
-    # duplicates = []
-    # for movie in movies:
-    #     if movie not in movie_dict:
-    #         movie_dict[movie] = 1
-    #     else:
-    #         duplicates.append(movie)
-    # return duplicates
 
     movies = read_movies(src)
     movie_counter = Counter(movies)
@@ -95,18 +87,13 @@ def optimized_find_duplicate_movies(src):
 def timeit_helper(func_name, func_param):
     """Part A: Obtain some profiling measurements using timeit"""
     assert isinstance(func_name, str)
-    stmt = func_name + "('"+func_param+"')"
-    setup = "from __main__ import  find_duplicate_movies,\
-            optimized_find_duplicate_movies"
+    stmt = f"{func_name}('{func_param}')"
+    setup = f"from {__name__} import {func_name}"
     t = timeit.Timer(stmt, setup)
     runs_per_repeat = 3
     num_repeats = 5
     result = t.repeat(repeat=num_repeats, number=runs_per_repeat)
-    # print(result)
-    avg = map(lambda x: x/3, result)
-    min_list = list(avg)
-    # print(min_list)
-    time_cost = min(min_list)
+    time_cost = min(result) / runs_per_repeat
     print(f"func={func_name}  num_repeats={num_repeats}\
         runs_per_repeat={runs_per_repeat} time_cost={time_cost:.3f} sec")
     return t
