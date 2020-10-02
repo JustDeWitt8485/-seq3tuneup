@@ -10,7 +10,8 @@ https://docs.python.org/3/library/timeit.html,
 https://youtu.be/FsAPt_9Bf3U,
 https://youtu.be/KlBPCzcQNU8,
 https://docs.python.org/3/library/profile.html,
-Manuel Velasco
+Manuel Velasco,
+Daniel Lomelino
 """
 
 import cProfile
