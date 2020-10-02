@@ -59,7 +59,7 @@ class TestTuneup(unittest.TestCase):
             )
         # Checks if the stmt= part is correct
         self.assertIn(
-            f"find_duplicate_movies{'movies.txt'}", actual_t.src,
+            f"find_duplicate_movies('movies.txt')", actual_t.src,
             "The timeit.Timer stmt is incorrect"
         )
 
